@@ -47,7 +47,7 @@ function calculateFirstNeolithic(dates) {
         const rectID = extractRectID(date);
         const value = extractDate(date);
         
-        if (!!date.Period &&['EBA','EMN','EN','IA','LBA','LMEN','LN','LNEBA','MBA','MLN','MN','UBA','UN'].includes(date.Period)) {
+        if (!!date.Period &&['EBA','EMN','EN','IA','LBA','LN','LNEBA','MBA','MLN','MN','UBA','UN'].includes(date.Period)) {
             const currentVal = acc.get(rectID);
             if (currentVal == undefined) {
                 acc.set(rectID, value);
@@ -62,3 +62,10 @@ function calculateFirstNeolithic(dates) {
         return acc;
     }, new Map());
 }
+
+//TODO
+/*
+1. use a vlookup in excel to add calibrated dates to dates (or include file in here and lookup - could load file then convert to Map | possibly worth programatising the RectID lookup)
+2. change comparisons to work with -ve numbers
+3. re-gen first Neolithic dates file
+*/

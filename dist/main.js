@@ -42,7 +42,7 @@ function calculateFirstNeolithic(dates) {
     return dates.reduce((acc, date, i) => {
         const rectID = extractRectID(date);
         const value = extractDate(date);
-        if (!!date.Period && ['EBA', 'EMN', 'EN', 'IA', 'LBA', 'LMEN', 'LN', 'LNEBA', 'MBA', 'MLN', 'MN', 'UBA', 'UN'].includes(date.Period)) {
+        if (!!date.Period && ['EBA', 'EMN', 'EN', 'IA', 'LBA', 'LN', 'LNEBA', 'MBA', 'MLN', 'MN', 'UBA', 'UN'].includes(date.Period)) {
             const currentVal = acc.get(rectID);
             if (currentVal == undefined) {
                 acc.set(rectID, value);
