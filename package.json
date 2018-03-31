@@ -4,7 +4,10 @@
   "description": "A collection of utilities for performing epidemiology inspired modeling on archaeological data.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev" : "npm run build && npm run start"
   },
   "repository": {
     "type": "git",
@@ -17,6 +20,13 @@
   },
   "homepage": "https://github.com/welshDoug/model-tools#readme",
   "dependencies": {
-    "csvtojson": "^1.1.9"
+    "csvtojson": "^1.1.9",
+    "fs": "0.0.1-security",
+    "json2csv": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/core-js": "^0.9.46",
+    "@types/node": "^9.6.1",
+    "typescript": "^2.8.1"
   }
 }
