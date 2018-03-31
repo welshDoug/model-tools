@@ -16,7 +16,7 @@ converter.fromFile("./data/dates.csv", function (err, result) {
     let dateMatrix = calculateFirstNeolithic(result);
     let values = convertHashtoJSON(dateMatrix);
     const csv = json2csv.parse(values);
-    fs.writeFile('./data/leads.csv', csv, { encoding: 'utf8' }, (err) => {
+    fs.writeFile('./data/firstDates.csv', csv, { encoding: 'utf8' }, (err) => {
         if (err)
             throw err;
         console.log("file written");
@@ -42,15 +42,16 @@ function calculateFirstNeolithic(dates) {
     return dates.reduce((acc, date, i) => {
         const rectID = extractRectID(date);
         const value = extractDate(date);
-        //TODO: Check the date is "Neolithic"
-        const currentVal = acc.get(rectID);
-        if (currentVal == undefined) {
-            acc.set(rectID, value);
-        }
-        else {
-            if (value > currentVal) {
-                //If the new value is earlier replace it
+        if (!!date.Period && ['EBA', 'EMN', 'EN', 'IA', 'LBA', 'LMEN', 'LN', 'LNEBA', 'MBA', 'MLN', 'MN', 'UBA', 'UN'].includes(date.Period)) {
+            const currentVal = acc.get(rectID);
+            if (currentVal == undefined) {
                 acc.set(rectID, value);
+            }
+            else {
+                if (value > currentVal) {
+                    //If the new value is earlier replace it
+                    acc.set(rectID, value);
+                }
             }
         }
         return acc;

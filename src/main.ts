@@ -47,15 +47,16 @@ function calculateFirstNeolithic(dates) {
         const rectID = extractRectID(date);
         const value = extractDate(date);
         
-        //TODO: Check the date is "Neolithic"
-        const currentVal = acc.get(rectID);
-        if (currentVal == undefined) {
-            acc.set(rectID, value);
-        }
-        else {            
-            if (value > currentVal) {
-                //If the new value is earlier replace it
+        if (!!date.Period &&['EBA','EMN','EN','IA','LBA','LMEN','LN','LNEBA','MBA','MLN','MN','UBA','UN'].includes(date.Period)) {
+            const currentVal = acc.get(rectID);
+            if (currentVal == undefined) {
                 acc.set(rectID, value);
+            }
+            else {            
+                if (value > currentVal) {
+                    //If the new value is earlier replace it
+                    acc.set(rectID, value);
+                }
             }
         }
         return acc;
