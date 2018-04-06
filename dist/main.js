@@ -23,7 +23,7 @@ converter.fromFile("./data/dates.csv", function (err, result) {
     });
 });
 function extractDate(date) {
-    return date.C14Age;
+    return date.Calib_Date;
 }
 function extractRectID(date) {
     return date.RectID;
@@ -48,7 +48,7 @@ function calculateFirstNeolithic(dates) {
                 acc.set(rectID, value);
             }
             else {
-                if (value > currentVal) {
+                if (value < currentVal) {
                     //If the new value is earlier replace it
                     acc.set(rectID, value);
                 }
@@ -57,3 +57,9 @@ function calculateFirstNeolithic(dates) {
         return acc;
     }, new Map());
 }
+//TODO
+/*
+1. use a vlookup in excel to add calibrated dates to dates (or include file in here and lookup - could load file then convert to Map | possibly worth programatising the RectID lookup)
+2. change comparisons to work with -ve numbers
+3. re-gen first Neolithic dates file
+*/ 

@@ -1,12 +1,13 @@
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const json2csv_1 = require("json2csv");
 // create a new converter object
 const json2csv = new json2csv_1.Parser();
-ocd = new Array();
-calib = new Array();
-model = new Object();
-require('../data/euroevol3.js');
+var ocd = new Array();
+var calib = new Array();
+var model = new Object();
+require('../data/euroevol2.js');
 console.log("OCD Length: " + ocd.length);
 const means = ocd.reduce((acc, date, i) => {
     if (date.likelihood && date.likelihood.mean) {
@@ -17,7 +18,7 @@ const means = ocd.reduce((acc, date, i) => {
 //console.log(means);
 let values = convertHashtoJSON(means);
 const csv = json2csv.parse(values);
-fs.writeFile('./data/euroevol3.csv', csv, { encoding: 'utf8' }, (err) => {
+fs.writeFile('./data/euroevol2.csv', csv, { encoding: 'utf8' }, (err) => {
     if (err)
         throw err;
     console.log("file written");
