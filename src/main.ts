@@ -23,7 +23,7 @@ converter.fromFile("./data/dates.csv",function(err,result){
 });
 
 function extractDate(date) {
-    return date.Calib_Date;
+    return parseFloat(date.Calib_Date);
 }
 
 function extractRectID(date) {
